@@ -1,7 +1,7 @@
 <template>
   <v-card width="auto" class="mx-auto mt-5">
     <!-- <v-card-title>{{ title }}</v-card-title> -->
-    <v-list>
+    <v-list three-line>
       <v-subheader>{{ title }}</v-subheader>
       <v-form @submit.prevent="addItem">
         <v-text-field
@@ -19,7 +19,14 @@
           :key="`${index + Math.round(Math.random() * 10000)}${item.text}`"
         >
           <v-list-item-content>
-            <v-list-item-title>{{ item.text }}</v-list-item-title>
+            <v-list-item-title>{{ item.text | capitalize }}</v-list-item-title>
+            <v-list-item-subtitle>
+              The scientific name of
+              <strong>{{ item.text | undercase }}</strong> is
+              <strong>{{ item.scientificName | undercase }}</strong>
+              <br>
+              <a :href="item.text | url" :alt="item.text" target="_blank">{{ item.text | undercase | url}}</a>
+            </v-list-item-subtitle>
           </v-list-item-content>
           <v-list-item-action>
             <v-btn icon>
@@ -41,14 +48,46 @@ export default {
   data: () => ({
     title: "Dinosaurs",
     items: [
-      { text: "Frilled dragon" },
-      { text: "African wild cat" },
-      { text: "Malabar squirrel" },
-      { text: "Sugar glider" },
-      { text: "White-necked raven" }
+      {
+        text: "frilled dragon",
+        scientificName: "Chlamydosaurus kingii"
+      },
+      {
+        text: "African wild cat",
+        scientificName: "Felis silvestris lybica"
+      },
+      {
+        text: "malabar squirrel",
+        scientificName: "Chlamydosaurus kingii"
+      },
+      {
+        text: "Sugar glider",
+        scientificName: "Petaurus breviceps"
+      },
+      {
+        text: "white-necked raven",
+        scientificName: "Corvus albicollis"
+      }
     ],
     textInput: ""
   }),
+  filters: {
+    capitalize(value) {
+      if (!value) return "";
+      const stringValue = value.toString();
+      return stringValue.charAt(0).toUpperCase() + stringValue.slice(1);
+    },
+    undercase(value) {
+      if (!value) return "";
+
+      const stringValue = value.toString();
+      return stringValue.toLowerCase();
+    },
+    url(value) {
+      if (!value) return "";
+      return `https://en.wikipedia.org/wiki/${value}`;
+    }
+  },
   methods: {
     addItem() {
       if (!this.textInput) return;
