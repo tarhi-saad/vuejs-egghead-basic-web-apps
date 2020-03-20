@@ -1,5 +1,5 @@
 {
-  "name": "vue",
+  "name": "vuejs-egghead",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -10,6 +10,7 @@
   "dependencies": {
     "@mdi/font": "5.0.45",
     "@vue/cli-plugin-babel": "4.1.1",
+    "gsap": "3.2.4",
     "vue": "^2.6.11",
     "vuetify": "2.2.17"
   },
@@ -45,10 +46,6 @@
     "last 2 versions",
     "not ie <= 8"
   ],
-  "keywords": [
-    "vue",
-    "vuejs",
-    "starter"
-  ],
-  "description": "Vue.js example starter project"
+  "keywords": [],
+  "description": ""
 }
