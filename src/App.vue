@@ -1,15 +1,18 @@
 <template>
   <v-app id="app">
     <Card/>
+    <List/>
   </v-app>
 </template>
 
 <script>
+import List from "./components/List";
 import Card from "./components/Card";
 
 export default {
   name: "App",
   components: {
+    List,
     Card
   }
 };
@@ -22,6 +25,5 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
 </style>
